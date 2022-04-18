@@ -1,37 +1,40 @@
-package com.k6genap.githubuserapp.api
+package com.rchdr.myapplication.api
 
-import com.k6genap.githubuserapp.data.model.response.DetailUserResp
-import com.k6genap.githubuserapp.data.model.User
-import com.k6genap.githubuserapp.data.model.response.UserResp
+import com.rchdr.myapplication.data.response.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface RetrofitApiService {
 
-    @GET("search/users")
-    @Headers("Authorization: token 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")
-    fun getSearchUsers(
-        @Query("q") query:String
-    ): Call<UserResp>
+    @FormUrlEncoded
+    @POST("register")
+    fun postRegister(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<RegisterResp>
 
-    @GET("users/{username}")
-    @Headers("Authorization: token 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")
-    fun getUserDetail(
-        @Path("username") username:String
-    ): Call<DetailUserResp>
+    @FormUrlEncoded
+    @POST("login")
+    fun postLogin(
+        @Field("email") email: String,
+        @Field("password") password: String,
+    ): Call<LoginResp>
 
-    @GET("users/{username}/followers")
-    @Headers("Authorization: token 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")
-    fun getFollowers(
-        @Path("username") username:String
-    ): Call<ArrayList<User>>
+    @Multipart
+    @POST("stories")
+    fun postStory(
+        @Header("Authorization") token: String,
+        @Part("description") description: RequestBody,
+        @Part photo: MultipartBody.Part
+    ): Call<StoryResp>
 
-    @GET("users/{username}/following")
-    @Headers("Authorization: token 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")
-    fun getFollowing(
-        @Path("username") username:String
-    ): Call<ArrayList<User>>
+    @GET("stories")
+    fun getStory(
+        @Header("Authorization") token:String
+    ): Call<StoryResp>
+
+
 }
