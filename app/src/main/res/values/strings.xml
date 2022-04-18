@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">StoryApp</string>
+    <string name="hint_login_image">Login Image</string>
+    <string name="hint_email">Email Address</string>
+    <string name="hint_pass">Password</string>
+    <string name="hint_login_button">Login</string>
+    <string name="hint_login_tv">Need An Account?</string>
+    <string name="hint_login_tv2"><u>Register Here</u></string>
+
+    <string name="hint_register_image">Login Image</string>
+    <string name="hint_register_name">Full Name</string>
+    <string name="hint_register_button">Register</string>
+    <string name="hint_register_tv">Have An Account?</string>
+    <string name="hint_register_tv2"><u>Log In</u></string>
 </resources>

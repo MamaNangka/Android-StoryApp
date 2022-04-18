@@ -6,4 +6,114 @@
     android:layout_height="match_parent"
     tools:context=".view.RegisterActivity">
 
+    <ImageView
+        android:id="@+id/iv_register"
+        android:layout_width="306dp"
+        android:layout_height="277dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/hint_register_image"
+        android:src="@drawable/register_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/f_register_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register"
+        app:layout_constraintStart_toStartOf="@+id/iv_register"
+        app:layout_constraintTop_toBottomOf="@+id/iv_register">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_login_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:hint="@string/hint_register_name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/f_register_email"
+        android:layout_width="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register"
+        app:layout_constraintStart_toStartOf="@+id/iv_register"
+        app:layout_constraintTop_toBottomOf="@+id/f_register_name">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/f_register_pass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register"
+        app:layout_constraintStart_toStartOf="@+id/iv_register"
+        app:layout_constraintTop_toBottomOf="@+id/f_register_email">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/et_login_pass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/white"
+                android:hint="@string/hint_pass"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/hint_register_button"
+        app:layout_constraintEnd_toEndOf="@+id/iv_register"
+        app:layout_constraintStart_toStartOf="@+id/iv_register"
+        app:layout_constraintTop_toBottomOf="@+id/f_register_pass" />
+
+    <TextView
+        android:id="@+id/register_tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/hint_register_tv"
+        app:layout_constraintStart_toStartOf="@+id/btn_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+    <TextView
+        android:id="@+id/register_tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/hint_register_tv2"
+        app:layout_constraintStart_toEndOf="@+id/register_tv1"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
