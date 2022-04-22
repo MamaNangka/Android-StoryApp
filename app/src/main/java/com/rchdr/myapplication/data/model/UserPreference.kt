@@ -23,7 +23,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
-    suspend fun login(user: User) {
+    suspend fun setUser(user: User) {
         dataStore.edit { preferences ->
             preferences[KEY_ID] = user.userId
             preferences[KEY_NAME] = user.name

@@ -18,13 +18,13 @@ class DetailStoryActivity : AppCompatActivity() {
         val story = intent.getParcelableExtra<ListStoryItem>(EXTRA_DETAIL) as ListStoryItem
         Glide.with(this)
             .load(story.photoUrl)
-            .into(ActivityDetailStoryBinding.ivItemImg)
-        ActivityDetailStoryBinding.tvNameDetail.text = story.name
-        ActivityDetailStoryBinding.tvDescriptionDetail.text = story.description
+            .into(DetailBinding.ivDetailImg)
+        DetailBinding.tvDetailUsername.text = story.name
+        DetailBinding.tvDetailDesc.text = story.description
     }
 
     companion object {
-        const val EXTRA_DETAIL = "detail_story"
+        const val EXTRA_DETAIL = "extra_detail"
     }
 
 }

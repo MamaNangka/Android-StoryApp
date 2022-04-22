@@ -28,7 +28,7 @@ interface RetrofitApiService {
     fun postStory(
         @Header("Authorization") token: String,
         @Part("description") description: RequestBody,
-        @Part photo: MultipartBody.Part
+        @Part file: MultipartBody.Part
     ): Call<StoryResp>
 
     @GET("stories")

@@ -1,12 +1,8 @@
 package com.rchdr.myapplication.adapter
 
 import com.rchdr.myapplication.R
-import com.rchdr.myapplication.data.model.Story
 import com.rchdr.myapplication.data.response.ListStoryItem
 import com.rchdr.myapplication.view.detail.DetailStoryActivity
-
-package com.rchdr.myapplication.adapter
-
 import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
@@ -21,7 +17,7 @@ import com.bumptech.glide.Glide
 
 
 
-class StoriesAdapter(private val listStories: ArrayList<ListStoryItem>) : RecyclerView.Adapter<StoriesAdapter.ViewHolder>(){
+class Adapter(private val listStories: ArrayList<ListStoryItem>) : RecyclerView.Adapter<Adapter.ViewHolder>(){
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val img: ImageView = view.findViewById(R.id.iv_item_img)
         val name: TextView = view.findViewById(R.id.tv_item_username)

@@ -21,4 +21,10 @@
     <string name="story_img">Story Image</string>
     <string name="story_date">Datetime</string>
     <string name="story_desc">Description</string>
+    <string name="hint_desc">Description</string>
+    <string name="hint_post_button">Post</string>
+    <string name="add_image">Add image</string>
+    <string name="menu_language">Language</string>
+    <string name="menu_logout">Log out</string>
+    <string name="denied">Permission Denied</string>
 </resources>
