@@ -4,12 +4,21 @@
     <string name="hint_email">Email Address</string>
     <string name="hint_pass">Password</string>
     <string name="hint_login_button">Login</string>
-    <string name="hint_login_tv">Need An Account?</string>
-    <string name="hint_login_tv2"><u>Register Here</u></string>
+    <string name="hint_login_tv">Need an account?</string>
+    <string name="hint_login_tv2"><u>Register here</u></string>
+    <string name="warn_pass">Password must have at least 6 characters</string>
+    <string name="warn_email">Invalid email format</string>
+    <string name="warn_name">Name cannot be empty</string>
 
     <string name="hint_register_image">Login Image</string>
     <string name="hint_register_name">Full Name</string>
     <string name="hint_register_button">Register</string>
-    <string name="hint_register_tv">Have An Account?</string>
-    <string name="hint_register_tv2"><u>Log In</u></string>
+    <string name="hint_register_tv">Have an account?</string>
+    <string name="hint_register_tv2"><u>Log in</u></string>
+
+    <string name="splash_title">Stories.</string>
+    <string name="story_username">Username</string>
+    <string name="story_img">Story Image</string>
+    <string name="story_date">Datetime</string>
+    <string name="story_desc">Description</string>
 </resources>

@@ -1,7 +1,10 @@
 package com.rchdr.myapplication.data.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ListStoryItem(
     @field:SerializedName("id")
     val id: String,
@@ -17,4 +20,4 @@ data class ListStoryItem(
     val lat: Double,
     @field:SerializedName("lon")
     val lon: Double
-)
+) : Parcelable

@@ -1,4 +1,4 @@
-package com.rchdr.myapplication.view
+package com.rchdr.myapplication.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

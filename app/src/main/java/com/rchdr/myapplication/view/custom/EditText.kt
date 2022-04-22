@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.Patterns
 import androidx.appcompat.widget.AppCompatEditText
+import com.rchdr.myapplication.R
 
 class EditText : AppCompatEditText {
 
@@ -33,15 +34,15 @@ class EditText : AppCompatEditText {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (type == "password") {
                     if (s.length < 6) {
-                        error = context.getString(R.string.password_warning)
+                        error = context.getString(R.string.warn_pass)
                     }
                 } else if (type == "email") {
                     if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
-                        error = context.getString(R.string.email_warning)
+                        error = context.getString(R.string.warn_email)
                     }
                 } else {
                     if (s.isEmpty()) {
-                        error = context.getString(R.string.name_warning)
+                        error = context.getString(R.string.warn_name)
                     }
                 }
             }
