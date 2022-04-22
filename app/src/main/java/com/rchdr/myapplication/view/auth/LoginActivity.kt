@@ -1,4 +1,4 @@
-package com.rchdr.myapplication.view
+package com.rchdr.myapplication.view.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

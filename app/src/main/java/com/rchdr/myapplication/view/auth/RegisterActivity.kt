@@ -1,10 +1,8 @@
-package com.rchdr.myapplication.view
+package com.rchdr.myapplication.view.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.rchdr.myapplication.R
-import com.rchdr.myapplication.databinding.ActivityLoginBinding
 import com.rchdr.myapplication.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
