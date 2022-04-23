@@ -8,10 +8,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -27,7 +24,6 @@ import com.rchdr.myapplication.data.model.UserPreference
 import com.rchdr.myapplication.data.response.StoryResp
 import com.rchdr.myapplication.data.viewmodel.*
 import com.rchdr.myapplication.databinding.ActivityAddStoryBinding
-import com.rchdr.myapplication.view.auth.LoginActivity
 import com.rchdr.myapplication.view.main.MainActivity
 import com.rchdr.myapplication.view.reduceFileImage
 import com.rchdr.myapplication.view.rotateBitmap
@@ -116,7 +112,7 @@ class AddStoryActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-        showLoading(true)
+        showProgressBar(true)
 
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
@@ -139,7 +135,7 @@ class AddStoryActivity : AppCompatActivity() {
                             call: Call<StoryResp>,
                             response: Response<StoryResp>
                         ) {
-                            showLoading(false)
+                            showProgressBar(false)
                             val responseBody = response.body()
                             Log.d(TAG, "onResponse: $responseBody")
                             if (response.isSuccessful && responseBody?.message == "Story created successfully") {
@@ -161,7 +157,7 @@ class AddStoryActivity : AppCompatActivity() {
                         }
 
                         override fun onFailure(call: Call<StoryResp>, t: Throwable) {
-                            showLoading(false)
+                            showProgressBar(false)
                             Log.e(TAG, "onFailure2: ${t.message}")
                             Toast.makeText(
                                 this@AddStoryActivity,
@@ -205,7 +201,7 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun showProgressBar(isLoading: Boolean) {
         if (isLoading) {
             AddBinding.progressBar.visibility = View.VISIBLE
         } else {

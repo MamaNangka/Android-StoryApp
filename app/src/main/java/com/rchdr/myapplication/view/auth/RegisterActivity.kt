@@ -67,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private fun createAccount(inputName: String, inputEmail: String, inputPassword: String) {
-        showLoading(true)
+        showProgressBar(true)
 
         val client = RetrofitApiConfig.getApiService().postRegister(inputName, inputEmail, inputPassword)
         client.enqueue(object: Callback<RegisterResp> {
@@ -75,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                 call: Call<RegisterResp>,
                 response: Response<RegisterResp>
             ) {
-                showLoading(false)
+                showProgressBar(false)
                 val responseBody = response.body()
                 Log.d(TAG, "onResponse: $responseBody")
                 if(response.isSuccessful && responseBody?.message == "User created") {
@@ -89,7 +89,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<RegisterResp>, t: Throwable) {
-                showLoading(false)
+                showProgressBar(false)
                 Log.e(TAG, "onFailure2: ${t.message}")
                 Toast.makeText(this@RegisterActivity, getString(R.string.register_failed), Toast.LENGTH_SHORT).show()
             }
@@ -97,7 +97,7 @@ class RegisterActivity : AppCompatActivity() {
         })
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    private fun showProgressBar(isLoading: Boolean) {
         if (isLoading) {
             RegisterBinding.progressBar.visibility = View.VISIBLE
         } else {

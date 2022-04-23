@@ -98,12 +98,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(inputEmail: String, inputPassword: String) {
-        showLoading(true)
+        showProgressBar(true)
 
         val client = RetrofitApiConfig.getApiService().postLogin(inputEmail, inputPassword)
         client.enqueue(object: Callback<LoginResp> {
             override fun onResponse(call: Call<LoginResp>, response: Response<LoginResp>) {
-                showLoading(false)
+                showProgressBar(false)
                 val responseBody = response.body()
                 Log.d(TAG, "onResponse: $responseBody")
                 if(response.isSuccessful && responseBody?.message == "success") {
@@ -119,14 +119,14 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<LoginResp>, t: Throwable) {
 
-                showLoading(false)
+                showProgressBar(false)
                 Log.e(TAG, "onFailure2: ${t.message}")
                 Toast.makeText(this@LoginActivity, getString(R.string.login_failed), Toast.LENGTH_SHORT).show()
             }
 
         })
     }
-    private fun showLoading(isLoading: Boolean) {
+    private fun showProgressBar(isLoading: Boolean) {
         if (isLoading) {
             LoginBinding.progressBar.visibility = View.VISIBLE
         } else {
