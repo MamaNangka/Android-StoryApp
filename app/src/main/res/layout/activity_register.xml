@@ -30,13 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/et_login_name"
+            <com.rchdr.myapplication.view.custom.EditText
+                android:id="@+id/et_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"
                 android:hint="@string/hint_register_name"
-                android:inputType="textPersonName" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
     </FrameLayout>
 
@@ -53,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/et_login_email"
+            <com.rchdr.myapplication.view.custom.EditText
+                android:id="@+id/et_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"
@@ -77,8 +77,8 @@
             android:layout_height="wrap_content"
             app:passwordToggleEnabled="true">
 
-            <EditText
-                android:id="@+id/et_login_pass"
+            <com.rchdr.myapplication.view.custom.EditText
+                android:id="@+id/et_register_pass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"

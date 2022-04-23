@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryApp</string>
+    <string name="hint_login_image">Gambar masuk</string>
+    <string name="hint_email">Alamat Email</string>
+    <string name="hint_pass">Kata Sandi</string>
+    <string name="hint_login_button">Masuk</string>
+    <string name="hint_login_tv">Butuh akun?</string>
+    <string name="hint_login_tv2"><u>Daftar disini</u></string>
+    <string name="warn_pass">Password harus terdiri dari 6 karakter</string>
+    <string name="warn_email">Format email salah</string>
+    <string name="warn_name">Nama tidak boleh kosong</string>
+
+    <string name="hint_register_image">Gambar daftar</string>
+    <string name="hint_register_name">Nama Lengkap</string>
+    <string name="hint_register_button">Daftar</string>
+    <string name="hint_register_tv">Sudah Punya Akun?</string>
+    <string name="hint_register_tv2"><u>Masuk</u></string>
+
+    <string name="splash_title">Stories.</string>
+    <string name="story_username">Nama</string>
+    <string name="story_img">Gambar cerita</string>
+    <string name="story_date">Tanggal dan waktu</string>
+    <string name="story_desc">Deskripsi</string>
+    <string name="hint_desc">Deskripsi</string>
+    <string name="hint_post_button">Kirim</string>
+    <string name="add_image">Tambah gambar</string>
+    <string name="menu_language">Bahasa</string>
+    <string name="menu_logout">Keluar</string>
+    <string name="denied">Izin ditolak</string>
+    <string name="login_success">Berhasil masuk</string>
+    <string name="login_failed">Gagal masuk</string>
+    <string name="upload_success">Berkas sukses terkirim</string>
+    <string name="upload_failed">Berkas tidak dapat dikirim</string>
+    <string name="capture_failed">Tidak dapat menangkap gambar</string>
+    <string name="camera_failed">Tidak dapat membuka kamera</string>
+    <string name="register_success">Akun berhasil didaftarkan</string>
+    <string name="register_failed">Tidak dapat membuat akun</string>
+    <string name="story_succes">Cerita telah dimuat</string>
+    <string name="story_failed">Tidak dapat memuat cerita</string>
+
+</resources>

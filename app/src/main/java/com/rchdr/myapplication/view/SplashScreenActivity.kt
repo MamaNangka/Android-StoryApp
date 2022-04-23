@@ -45,7 +45,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun playAnimation() {
-        ObjectAnimator.ofFloat(SplashBinding.splashTv, View.TRANSLATION_Y, 1050f, 1000f).apply {
+        ObjectAnimator.ofFloat(SplashBinding.splashTv, View.TRANSLATION_Y, 50f, 0f).apply {
             duration = 2000
         }.start()
     }

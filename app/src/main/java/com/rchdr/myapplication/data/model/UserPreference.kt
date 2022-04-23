@@ -15,8 +15,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
     fun getUser(): Flow<User> {
         return dataStore.data.map { preferences ->
             User(
-                preferences[KEY_ID] ?: "",
-                preferences[KEY_NAME] ?: "",
                 preferences[KEY_TOKEN] ?: "",
                 preferences[KEY_ISLOGIN] ?: false
             )
@@ -25,8 +23,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
     suspend fun setUser(user: User) {
         dataStore.edit { preferences ->
-            preferences[KEY_ID] = user.userId
-            preferences[KEY_NAME] = user.name
             preferences[KEY_TOKEN] = user.token
             preferences[KEY_ISLOGIN] = user.isLogin
         }
@@ -34,8 +30,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
     suspend fun logout() {
         dataStore.edit { preferences ->
-            preferences[KEY_ID] = ""
-            preferences[KEY_NAME] = ""
             preferences[KEY_TOKEN] = ""
             preferences[KEY_ISLOGIN] = false
         }
@@ -45,8 +39,6 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         @Volatile
         private var INSTANCE: UserPreference? = null
 
-        private val KEY_ID = stringPreferencesKey("id")
-        private val KEY_NAME = stringPreferencesKey("name")
         private val KEY_TOKEN = stringPreferencesKey("token")
         private val KEY_ISLOGIN = booleanPreferencesKey("islogin")
 

@@ -10,7 +10,7 @@ import com.rchdr.myapplication.R
 
 class EditText : AppCompatEditText {
 
-    var type = ""
+    var check = ""
 
     constructor(context: Context) : super(context) {
         init()
@@ -32,11 +32,11 @@ class EditText : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (type == "password") {
+                if (check == "password") {
                     if (s.length < 6) {
                         error = context.getString(R.string.warn_pass)
                     }
-                } else if (type == "email") {
+                } else if (check == "email") {
                     if (!Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
                         error = context.getString(R.string.warn_email)
                     }

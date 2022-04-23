@@ -27,4 +27,15 @@
     <string name="menu_language">Language</string>
     <string name="menu_logout">Log out</string>
     <string name="denied">Permission Denied</string>
+    <string name="login_success">Login Success</string>
+    <string name="login_failed">Login Failed</string>
+    <string name="upload_success">File successfully uploaded</string>
+    <string name="upload_failed">File cannot uploaded</string>
+    <string name="capture_failed">Cannot capture image</string>
+    <string name="camera_failed">Cannot open camera</string>
+    <string name="register_success">Account registered</string>
+    <string name="register_failed">Cannot create account</string>
+    <string name="story_succes">Stories successfully loaded</string>
+    <string name="story_failed">Cannot load stories</string>
+
 </resources>

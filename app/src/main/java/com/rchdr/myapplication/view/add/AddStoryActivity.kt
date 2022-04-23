@@ -20,13 +20,11 @@ import androidx.core.content.ContextCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.rchdr.myapplication.R
 import com.rchdr.myapplication.api.RetrofitApiConfig
 import com.rchdr.myapplication.data.model.UserPreference
-import com.rchdr.myapplication.data.response.FileUploadResponse
-import com.rchdr.myapplication.data.response.RegisterResp
+import com.rchdr.myapplication.data.response.StoryResp
 import com.rchdr.myapplication.data.viewmodel.*
 import com.rchdr.myapplication.databinding.ActivityAddStoryBinding
 import com.rchdr.myapplication.view.auth.LoginActivity
@@ -85,28 +83,6 @@ class AddStoryActivity : AppCompatActivity() {
         )[AllViewModel::class.java]
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.option_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logout_menu -> {
-                AddViewModel.logout()
-                val it = Intent(this, LoginActivity::class.java)
-                startActivity(it)
-                return true
-            }
-            R.id.changeLang_menu -> {
-                val it = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(it)
-                return true
-            }
-        }
-        return true
-
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -158,10 +134,10 @@ class AddStoryActivity : AppCompatActivity() {
                 if (it != null) {
                     val client = RetrofitApiConfig.getApiService()
                         .postStory("Bearer " + it.token,  description, imageMultipart)
-                    client.enqueue(object : Callback<FileUploadResponse> {
+                    client.enqueue(object : Callback<StoryResp> {
                         override fun onResponse(
-                            call: Call<FileUploadResponse>,
-                            response: Response<FileUploadResponse>
+                            call: Call<StoryResp>,
+                            response: Response<StoryResp>
                         ) {
                             showLoading(false)
                             val responseBody = response.body()
@@ -178,18 +154,18 @@ class AddStoryActivity : AppCompatActivity() {
                                 Log.e(TAG, "onFailure1: ${response.message()}")
                                 Toast.makeText(
                                     this@AddStoryActivity,
-                                    getString(R.string.upload_fail),
+                                    getString(R.string.upload_failed),
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
                         }
 
-                        override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
+                        override fun onFailure(call: Call<StoryResp>, t: Throwable) {
                             showLoading(false)
                             Log.e(TAG, "onFailure2: ${t.message}")
                             Toast.makeText(
                                 this@AddStoryActivity,
-                                getString(R.string.upload_fail),
+                                getString(R.string.upload_failed),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
@@ -249,4 +225,3 @@ class AddStoryActivity : AppCompatActivity() {
 
 
 
-}

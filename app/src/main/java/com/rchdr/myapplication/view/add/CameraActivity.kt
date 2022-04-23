@@ -7,26 +7,28 @@ import android.os.Bundle
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.rchdr.myapplication.databinding.ActivityCameraBinding
-import com.rchdr.myapplication.databinding.ActivityLoginBinding
-import java.nio.file.Files.createFile
+import com.rchdr.myapplication.view.createFile
+import com.rchdr.myapplication.R
 
 class CameraActivity : AppCompatActivity() {
 
-    private lateinit var CameraBinding: ActivityCameraBinding
+    private lateinit var cameraBinding: ActivityCameraBinding
     private var imgCapture: ImageCapture? = null
     private var camSelect: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CameraBinding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(CameraBinding.root)
-        CameraBinding.captureImage.setOnClickListener { takePhoto() }
+        cameraBinding = ActivityCameraBinding.inflate(layoutInflater)
+        setContentView(cameraBinding.root)
+        cameraBinding.captureImage.setOnClickListener { takePhoto() }
 
-        CameraBinding.changeCamera.setOnClickListener {
+        cameraBinding.changeCamera.setOnClickListener {
             camSelect = if (camSelect == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
             else CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -40,6 +42,7 @@ class CameraActivity : AppCompatActivity() {
         startCamera()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun takePhoto() {
         val imageCapture = imgCapture ?: return
         val file = createFile(application)
@@ -51,7 +54,7 @@ class CameraActivity : AppCompatActivity() {
                 override fun onError(exc: ImageCaptureException) {
                     Toast.makeText(
                         this@CameraActivity,
-                        getString(R.string.fail_take_picture),
+                        getString(R.string.capture_failed),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -78,7 +81,7 @@ class CameraActivity : AppCompatActivity() {
             val preview = Preview.Builder()
                 .build()
                 .also {
-                    it.setSurfaceProvider(CameraBinding.viewFinder.surfaceProvider)
+                    it.setSurfaceProvider(cameraBinding.viewFinder.surfaceProvider)
                 }
 
             imgCapture = ImageCapture.Builder().build()
@@ -94,7 +97,7 @@ class CameraActivity : AppCompatActivity() {
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
-                    getString(R.string.fail_show_camera),
+                    getString(R.string.camera_failed),
                     Toast.LENGTH_SHORT
                 ).show()
             }
