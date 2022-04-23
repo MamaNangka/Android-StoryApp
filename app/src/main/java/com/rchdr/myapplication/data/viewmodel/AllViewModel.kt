@@ -9,6 +9,7 @@ import com.rchdr.myapplication.data.model.UserPreference
 import kotlinx.coroutines.launch
 
 class AllViewModel(private val pref: UserPreference) : ViewModel() {
+
    fun getUser() : LiveData<User> {
     return pref.getUser().asLiveData()
 }

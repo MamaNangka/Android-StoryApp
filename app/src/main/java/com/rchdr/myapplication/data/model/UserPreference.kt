@@ -44,9 +44,9 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
 
         fun getInstance(dataStore: DataStore<Preferences>): UserPreference {
             return INSTANCE ?: synchronized(this) {
-                val instance = UserPreference(dataStore)
-                INSTANCE = instance
-                instance
+                val Instance = UserPreference(dataStore)
+                INSTANCE = Instance
+                Instance
             }
         }
     }

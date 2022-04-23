@@ -29,12 +29,13 @@ class Adapter(private val listStories: ArrayList<ListStoryItem>) : RecyclerView.
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.name.text = listStories[position].name
-        viewHolder.date.text = listStories[position].createdAt
+
         Glide.with(viewHolder.itemView.context)
             .load(listStories[position].photoUrl)
             .centerCrop()
             .into(viewHolder.img)
+        viewHolder.name.text = listStories[position].name
+        viewHolder.date.text = listStories[position].createdAt
 
         viewHolder.itemView.setOnClickListener {
             val optionsCompat: ActivityOptionsCompat =
