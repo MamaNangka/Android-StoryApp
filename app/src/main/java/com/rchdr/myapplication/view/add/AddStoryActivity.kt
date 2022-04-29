@@ -46,10 +46,19 @@ class AddStoryActivity : AppCompatActivity() {
     private lateinit var AddViewModel: AllViewModel
     private var getFile: File? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AddBinding = ActivityAddStoryBinding.inflate(layoutInflater)
         setContentView(AddBinding.root)
+
+        val lat = intent.getFloatExtra(lat, 1000f)
+        val lon = intent.getFloatExtra(lng, 1000f)
+
+        if(lat != 1000f && lon != 1000f) {
+            val location = "Latitude = $lat, \nLongitude = $lon"
+            AddBinding.tvAddLatlng.text = location
+        }
 
         setupViewModel()
 
@@ -70,8 +79,10 @@ class AddStoryActivity : AppCompatActivity() {
         }
 
         AddBinding.btnPost.setOnClickListener {
-            uploadImage()
+            uploadImage(lat, lon)
         }
+
+
     }
 
     private fun setupViewModel() {
@@ -111,7 +122,7 @@ class AddStoryActivity : AppCompatActivity() {
         launcherIntentGallery.launch(chooser)
     }
 
-    private fun uploadImage() {
+    private fun uploadImage(lat: Float, lon: Float) {
         showProgressBar(true)
 
         if (getFile != null) {
@@ -127,9 +138,13 @@ class AddStoryActivity : AppCompatActivity() {
             )
 
             AddViewModel.getUser().observe(this) {
-                if (it != null) {
-                    val client = RetrofitApiConfig.getApiService()
-                        .postStory("Bearer " + it.token,  description, imageMultipart)
+                if(it != null) {
+                    val client = if(lat != 1000f && lon != 1000f) {
+                        RetrofitApiConfig.getApiService().postStoryLocation("Bearer " + it.token, description,imageMultipart, lat, lon)
+                    } else {
+                        RetrofitApiConfig.getApiService().postStory("Bearer " + it.token,  description, imageMultipart)
+                    }
+
                     client.enqueue(object : Callback<StoryResp> {
                         override fun onResponse(
                             call: Call<StoryResp>,
@@ -201,6 +216,9 @@ class AddStoryActivity : AppCompatActivity() {
         }
     }
 
+
+
+
     private fun showProgressBar(isLoading: Boolean) {
         if (isLoading) {
             AddBinding.progressBar.visibility = View.VISIBLE
@@ -215,6 +233,9 @@ class AddStoryActivity : AppCompatActivity() {
 
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
+
+        const val lat = "lat"
+        const val lng = "lng"
     }
 
 }

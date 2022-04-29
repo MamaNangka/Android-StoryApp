@@ -10,19 +10,19 @@ import kotlinx.coroutines.launch
 
 class AllViewModel(private val pref: UserPreference) : ViewModel() {
 
-   fun getUser() : LiveData<User> {
-    return pref.getUser().asLiveData()
-}
-
-fun setUser(user: User) {
-    viewModelScope.launch {
-        pref.setUser(user)
+    fun getUser() : LiveData<User> {
+        return pref.getUser().asLiveData()
     }
-}
 
-fun logout() {
-    viewModelScope.launch {
-        pref.logout()
+    fun setUser(user: User) {
+        viewModelScope.launch {
+            pref.setUser(user)
+        }
     }
-}
+
+    fun logout() {
+        viewModelScope.launch {
+            pref.logout()
+        }
+    }
 }

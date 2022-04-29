@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import android.widget.Toast
 import com.rchdr.myapplication.R
 import java.io.*
 import java.text.SimpleDateFormat
@@ -80,3 +81,6 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
     return myFile
 }
 
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+}

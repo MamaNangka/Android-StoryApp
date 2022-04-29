@@ -32,9 +32,25 @@ interface RetrofitApiService {
     ): Call<StoryResp>
 
     @GET("stories")
+    fun getStoryLocation(
+        @Header("Authorization") authorization: String,
+        @Query("location") includeLocation: Int = 1
+    ): Call<StoryResp>
+
+    @GET("stories")
     fun getStory(
         @Header("Authorization") token:String
     ): Call<StoryResp>
+
+    @Multipart
+    @POST("stories")
+    fun postStoryLocation(
+        @Header("Authorization") token: String,
+        @Part("description") description: RequestBody,
+        @Part file: MultipartBody.Part,
+        @Part("lat") lat: Float,
+        @Part("lon") lon: Float
+    ) : Call<StoryResp>
 
 
 }

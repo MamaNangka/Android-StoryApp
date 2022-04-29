@@ -37,5 +37,20 @@
     <string name="register_failed">Cannot create account</string>
     <string name="story_succes">Stories successfully loaded</string>
     <string name="story_failed">Cannot load stories</string>
+    <string name="menu_map">Map</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="location_error">Location not found</string>
+    <string name="location">Your location</string>
+    <string name="map_key">AIzaSyBbYinNPesWWtoGdPpt4l7lpLACDdJYUvw</string>
+    <string name="location_map">"Location: "</string>
+    <string name="name_map">by</string>
+    <string name="map_style_error">Map style error. Using default style</string>
+    <string name="hint_latlng">Lat - Lon</string>
+    <string name="hint_latlng_button">Get Location</string>
+    <string name="add_post_location">Add Story with Location</string>
+    <string name="story_location">Location</string>
+    <string name="coordinate">"Coordinate: "</string>
+    <string name="try_again">Try again</string>
+    <string name="connection_timeout">Connection Timeout</string>
 
 </resources>

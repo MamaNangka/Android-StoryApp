@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
+import com.rchdr.myapplication.R
 import com.rchdr.myapplication.data.response.ListStoryItem
 import com.rchdr.myapplication.databinding.ActivityDetailStoryBinding
 
@@ -22,6 +23,7 @@ class DetailStoryActivity : AppCompatActivity() {
             .into(DetailBinding.ivDetailImg)
         DetailBinding.tvDetailUsername.text = story.name
         DetailBinding.tvDetailDesc.text = story.description
+        DetailBinding.tvDetailLocation.text = getString(R.string.coordinate)+ story.lat.toString()+", " + story.lon.toString()
         showProgressBar(false)
     }
     private fun showProgressBar(isLoading: Boolean) {

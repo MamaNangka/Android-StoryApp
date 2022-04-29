@@ -26,6 +26,7 @@ import com.rchdr.myapplication.data.viewmodel.ViewModelFactory
 import com.rchdr.myapplication.databinding.ActivityMainBinding
 import com.rchdr.myapplication.view.add.AddStoryActivity
 import com.rchdr.myapplication.view.auth.LoginActivity
+import com.rchdr.myapplication.view.map.MapActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,14 +64,18 @@ class MainActivity : AppCompatActivity() {
         )[AllViewModel::class.java]
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.option_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
+            R.id.map_menu -> {
+                val it = Intent(this, MapActivity::class.java)
+                startActivity(it)
+                return true
+            }
             R.id.changeLang_menu -> {
                 val it = Intent(Settings.ACTION_LOCALE_SETTINGS)
                 startActivity(it)
@@ -79,7 +84,8 @@ class MainActivity : AppCompatActivity() {
             R.id.logout_menu -> {
                 MainViewModel.logout()
                 val it = Intent(this, LoginActivity::class.java)
-                it.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                it.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                 startActivity(it)
                 finish()
                 return true
@@ -92,10 +98,10 @@ class MainActivity : AppCompatActivity() {
     private fun getStories() {
         showProgressBar(true)
 
-        MainViewModel.getUser().observe(this ) {
-            if(it != null) {
+        MainViewModel.getUser().observe(this) {
+            if (it != null) {
                 val client = RetrofitApiConfig.getApiService().getStory("Bearer " + it.token)
-                client.enqueue(object: Callback<StoryResp> {
+                client.enqueue(object : Callback<StoryResp> {
                     override fun onResponse(
                         call: Call<StoryResp>,
                         response: Response<StoryResp>
@@ -103,19 +109,31 @@ class MainActivity : AppCompatActivity() {
                         showProgressBar(false)
                         val responseBody = response.body()
                         Log.d(TAG, "onResponse: $responseBody")
-                        if(response.isSuccessful && responseBody?.message == "Stories fetched successfully") {
+                        if (response.isSuccessful && responseBody?.message == "Stories fetched successfully") {
                             setStoriesData(responseBody.listStory)
-                            Toast.makeText(this@MainActivity, getString(R.string.story_succes), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.story_succes),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
                             Log.e(TAG, "onFailure1: ${response.message()}")
-                            Toast.makeText(this@MainActivity, getString(R.string.story_failed), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@MainActivity,
+                                getString(R.string.story_failed),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
 
                     override fun onFailure(call: Call<StoryResp>, t: Throwable) {
                         showProgressBar(false)
                         Log.e(TAG, "onFailure2: ${t.message}")
-                        Toast.makeText(this@MainActivity, getString(R.string.story_failed), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@MainActivity,
+                            getString(R.string.story_failed),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                 })
@@ -126,7 +144,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setStoriesData(items: List<ListStoryItem>) {
         val listStories = ArrayList<ListStoryItem>()
-        for(item in items) {
+        for (item in items) {
             val story = ListStoryItem(
 
                 item.id,
