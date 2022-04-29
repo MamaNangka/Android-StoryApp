@@ -2,6 +2,7 @@ package com.rchdr.myapplication.view.main
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.MaskFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -10,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -17,11 +19,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rchdr.myapplication.R
 import com.rchdr.myapplication.adapter.Adapter
+import com.rchdr.myapplication.adapter.LoadingStateAdapter
 import com.rchdr.myapplication.api.RetrofitApiConfig
 import com.rchdr.myapplication.data.model.UserPreference
 import com.rchdr.myapplication.data.response.ListStoryItem
 import com.rchdr.myapplication.data.response.StoryResp
 import com.rchdr.myapplication.data.viewmodel.AllViewModel
+import com.rchdr.myapplication.data.viewmodel.StoryViewModel
 import com.rchdr.myapplication.data.viewmodel.ViewModelFactory
 import com.rchdr.myapplication.databinding.ActivityMainBinding
 import com.rchdr.myapplication.view.add.AddStoryActivity
@@ -37,6 +41,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var MainViewModel: AllViewModel
     private lateinit var MainBinding: ActivityMainBinding
+    private val MainViewModel1: StoryViewModel by viewModels {
+        StoryViewModel.ViewModelFactory(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,70 +104,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun getStories() {
         showProgressBar(true)
-
-        MainViewModel.getUser().observe(this) {
-            if (it != null) {
-                val client = RetrofitApiConfig.getApiService().getStory("Bearer " + it.token)
-                client.enqueue(object : Callback<StoryResp> {
-                    override fun onResponse(
-                        call: Call<StoryResp>,
-                        response: Response<StoryResp>
-                    ) {
-                        showProgressBar(false)
-                        val responseBody = response.body()
-                        Log.d(TAG, "onResponse: $responseBody")
-                        if (response.isSuccessful && responseBody?.message == "Stories fetched successfully") {
-                            setStoriesData(responseBody.listStory)
-                            Toast.makeText(
-                                this@MainActivity,
-                                getString(R.string.story_succes),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Log.e(TAG, "onFailure1: ${response.message()}")
-                            Toast.makeText(
-                                this@MainActivity,
-                                getString(R.string.story_failed),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-
-                    override fun onFailure(call: Call<StoryResp>, t: Throwable) {
-                        showProgressBar(false)
-                        Log.e(TAG, "onFailure2: ${t.message}")
-                        Toast.makeText(
-                            this@MainActivity,
-                            getString(R.string.story_failed),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-
-                })
+        val adapter = Adapter()
+        MainBinding.rvStory.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter.retry()
+            }
+        )
+        MainViewModel.getUser().observe(this) { user ->
+            if(user != null) {
+                MainViewModel1.story("Bearer " + user.token).observe(this) { story ->
+                    adapter.submitData(lifecycle, story)
+                }
             }
         }
-
+        showProgressBar(false)
     }
 
-    private fun setStoriesData(items: List<ListStoryItem>) {
-        val listStories = ArrayList<ListStoryItem>()
-        for (item in items) {
-            val story = ListStoryItem(
-
-                item.id,
-                item.name,
-                item.description,
-                item.photoUrl,
-                item.createdAt,
-                item.lat,
-                item.lon
-            )
-            listStories.add(story)
-        }
-
-        val adapter = Adapter(listStories)
-        MainBinding.rvStory.adapter = adapter
-    }
 
     private fun showProgressBar(isLoading: Boolean) {
         if (isLoading) {
@@ -170,7 +129,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val TAG = "Main Activity"
-    }
 }

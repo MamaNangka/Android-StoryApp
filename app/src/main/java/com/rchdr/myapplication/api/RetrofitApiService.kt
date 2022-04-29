@@ -38,9 +38,11 @@ interface RetrofitApiService {
     ): Call<StoryResp>
 
     @GET("stories")
-    fun getStory(
-        @Header("Authorization") token:String
-    ): Call<StoryResp>
+    suspend fun getStory(
+        @Header("Authorization") header: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ) : StoryResp
 
     @Multipart
     @POST("stories")

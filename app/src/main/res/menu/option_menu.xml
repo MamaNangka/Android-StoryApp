@@ -6,17 +6,17 @@
             android:id="@+id/map_menu"
             android:title="@string/menu_map"
             android:icon="@drawable/ic_map"
-            app:showAsAction="collapseActionView|always" />
+            app:showAsAction="collapseActionView|ifRoom" />
         <item
             android:id="@+id/changeLang_menu"
             android:title="@string/menu_language"
             android:icon="@drawable/ic_language"
-            app:showAsAction="collapseActionView|always" />
+            app:showAsAction="collapseActionView|ifRoom" />
         <item
             android:id="@+id/logout_menu"
             android:title="@string/menu_logout"
             android:icon="@drawable/ic_logout"
-            app:showAsAction="collapseActionView|always" />
+            app:showAsAction="collapseActionView|ifRoom" />
 
 
     </group>

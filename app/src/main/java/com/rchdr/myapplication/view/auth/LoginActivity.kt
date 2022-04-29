@@ -79,8 +79,9 @@ class LoginActivity : AppCompatActivity() {
         inflater.inflate(R.menu.option_menu, menu)
 
         val logoutMenu = menu.findItem(R.id.logout_menu)
-
+        val mapMenu = menu.findItem(R.id.map_menu)
         logoutMenu.isVisible = false
+        mapMenu.isVisible = false
 
         return true
     }

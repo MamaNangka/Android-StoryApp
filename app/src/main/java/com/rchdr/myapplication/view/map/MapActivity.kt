@@ -63,7 +63,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         getStoriesLocation()
         MapLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -222,7 +221,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     companion object {
-        const val TAG = "StoryMapsActivity"
         var lat = 0.0
         var lng = 0.0
     }

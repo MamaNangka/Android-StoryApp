@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.rchdr.myapplication.R
+import com.rchdr.myapplication.data.model.Story
 import com.rchdr.myapplication.data.response.ListStoryItem
 import com.rchdr.myapplication.databinding.ActivityDetailStoryBinding
 
@@ -17,9 +18,9 @@ class DetailStoryActivity : AppCompatActivity() {
         DetailBinding = ActivityDetailStoryBinding.inflate(layoutInflater)
         setContentView(DetailBinding.root)
         showProgressBar(true)
-        val story = intent.getParcelableExtra<ListStoryItem>(EXTRA_DETAIL) as ListStoryItem
+        val story = intent.getParcelableExtra<Story>(EXTRA_DETAIL) as Story
         Glide.with(this)
-            .load(story.photoUrl)
+            .load(story.photo)
             .into(DetailBinding.ivDetailImg)
         DetailBinding.tvDetailUsername.text = story.name
         DetailBinding.tvDetailDesc.text = story.description

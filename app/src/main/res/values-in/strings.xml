@@ -38,5 +38,19 @@
     <string name="register_failed">Tidak dapat membuat akun</string>
     <string name="story_succes">Cerita telah dimuat</string>
     <string name="story_failed">Tidak dapat memuat cerita</string>
+    <string name="menu_map">Peta</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="location_error">Lokasi tidak ditemukan</string>
+    <string name="location">Lokasi anda</string>
+    <string name="map_key">AIzaSyBbYinNPesWWtoGdPpt4l7lpLACDdJYUvw</string>
+    <string name="location_map">"Lokasi: "</string>
+    <string name="name_map">oleh</string>
+    <string name="map_style_error">Tema peta error. Menggunakan tema bawaan</string>
+    <string name="hint_latlng">Lat - Lon</string>
+    <string name="add_post_location">Tambah cerita dengan lokasi</string>
+    <string name="story_location">Lokasi</string>
+    <string name="coordinate">"Koordinat: "</string>
+    <string name="try_again">Coba ulang</string>
+    <string name="connection_timeout">Waktu koneksi habis</string>
 
 </resources>

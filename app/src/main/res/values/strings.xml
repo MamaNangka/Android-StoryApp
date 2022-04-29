@@ -46,7 +46,6 @@
     <string name="name_map">by</string>
     <string name="map_style_error">Map style error. Using default style</string>
     <string name="hint_latlng">Lat - Lon</string>
-    <string name="hint_latlng_button">Get Location</string>
     <string name="add_post_location">Add Story with Location</string>
     <string name="story_location">Location</string>
     <string name="coordinate">"Coordinate: "</string>
